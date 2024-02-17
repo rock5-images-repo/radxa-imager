@@ -12,6 +12,7 @@ usage() {
     echo "      --app-icon-ico APP_ICON_ICO_PATH  Specify path to custom .ico application icon image (default: app-icon.ico)"
     echo "      --app-icon-icns APP_ICON_ICNS_PATH  Specify path to custom .icns application icon image (default: app-icon.icns)"
     echo "      --source SOURCE_PATH  Specify path to source folder (default: rpi-imager)"
+    echo "      --repo REPO_URL       Specify the new repository URL"
     exit 1
 }
 
@@ -36,6 +37,7 @@ while [[ "$#" -gt 0 ]]; do
         --app-icon-ico) app_icon_ico="$2"; shift ;;
         --app-icon-icns) app_icon_icns="$2"; shift ;;
         --source) source_folder="$2"; shift ;;
+        --repo) repo_url="$2"; shift ;;
         --help) usage ;;
         *) echo "Unknown parameter passed: $1"; exit 1 ;;
     esac
@@ -81,6 +83,12 @@ if [[ -f "$app_icon_icns" ]]; then
     cp "$app_icon_icns" "$source_folder/src/icons/rpi-imager.icns"
 else
     echo "Custom .icns app icon image not found. Using default .icns app icon."
+fi
+
+# Perform OSLIST_URL replacement only if --repo option is provided
+if [[ -n "$repo_url" ]]; then
+    sed -i "s|^\(#define OSLIST_URL\s*\).*|\1\"$repo_url\"|g" "$source_folder/src/config.h"
+    echo "OSLIST_URL patched successfully."
 fi
 
 echo "Modifications applied successfully."

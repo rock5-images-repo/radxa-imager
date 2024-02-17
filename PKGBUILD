@@ -27,7 +27,7 @@ pkgver() {
 
 build() {
   echo "Applying customization patch ..."
-  ./patch-rpi-imager --name="Radxa" --color="#7dc02e"
+  ./patch-rpi-imager --name="Radxa" --color="#7dc02e" --repo="https://rock5-images-repo.github.io/index.json"
   cd "rpi-imager"
 
   cmake \
