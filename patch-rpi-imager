@@ -48,19 +48,39 @@ sed -i "s/Raspberry Pi/$name/g" "$source_folder/src/main.qml"
 # Perform color replacement
 sed -i "s/#cd2355/$color/g" "$source_folder/src/main.qml"
 
-# Perform logo replacement
-cp "$logo" "$source_folder/src/icons/logo_sxs_imager.png"
+# Perform logo replacement if the file exists
+if [[ -f "$logo" ]]; then
+    cp "$logo" "$source_folder/src/icons/logo_sxs_imager.png"
+else
+    echo "Custom logo image not found. Using default logo."
+fi
 
-# Perform stacked logo replacement
-cp "$logo_stacked" "$source_folder/src/icons/logo_stacked_imager.png"
+# Perform stacked logo replacement if the file exists
+if [[ -f "$logo_stacked" ]]; then
+    cp "$logo_stacked" "$source_folder/src/icons/logo_stacked_imager.png"
+else
+    echo "Custom stacked logo image not found. Using default stacked logo."
+fi
 
-# Perform app icon replacement
-cp "$app_icon" "$source_folder/src/icons/rpi-imager.png"
+# Perform app icon replacement if the file exists
+if [[ -f "$app_icon" ]]; then
+    cp "$app_icon" "$source_folder/src/icons/rpi-imager.png"
+else
+    echo "Custom app icon image not found. Using default app icon."
+fi
 
-# Perform app icon .ico replacement
-cp "$app_icon_ico" "$source_folder/src/icons/rpi-imager.ico"
+# Perform app icon .ico replacement if the file exists
+if [[ -f "$app_icon_ico" ]]; then
+    cp "$app_icon_ico" "$source_folder/src/icons/rpi-imager.ico"
+else
+    echo "Custom .ico app icon image not found. Using default .ico app icon."
+fi
 
-# Perform app icon .icns replacement
-cp "$app_icon_icns" "$source_folder/src/icons/rpi-imager.icns"
+# Perform app icon .icns replacement if the file exists
+if [[ -f "$app_icon_icns" ]]; then
+    cp "$app_icon_icns" "$source_folder/src/icons/rpi-imager.icns"
+else
+    echo "Custom .icns app icon image not found. Using default .icns app icon."
+fi
 
 echo "Modifications applied successfully."
