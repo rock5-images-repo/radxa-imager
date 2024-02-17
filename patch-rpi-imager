@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# Define usage function
+usage() {
+    echo "Usage: $0 [OPTIONS]"
+    echo "Options:"
+    echo "  -n, --name NAME           Specify custom name to replace Raspberry Pi with (default: Custom)"
+    echo "  -c, --color COLOR         Specify custom theme color (default: #000)"
+    echo "      --logo LOGO_PATH      Specify path to custom banner logo image (default: logo.png)"
+    echo "      --app-icon ICON_PATH  Specify path to custom application icon image (default: app-icon.png)"
+    echo "      --logo-stacked LOGO_STACKED_PATH  Specify path to custom stacked logo image (default: logo-stacked_imager.png)"
+    echo "      --app-icon-ico APP_ICON_ICO_PATH  Specify path to custom .ico application icon image (default: app-icon.ico)"
+    echo "      --app-icon-icns APP_ICON_ICNS_PATH  Specify path to custom .icns application icon image (default: app-icon.icns)"
+    echo "      --source SOURCE_PATH  Specify path to source folder (default: rpi-imager)"
+    exit 1
+}
+
+# Default values
+name="Custom"
+color="#000"
+logo="logo.png"
+app_icon="app-icon.png"
+logo_stacked="logo-stacked_imager.png"
+app_icon_ico="app-icon.ico"
+app_icon_icns="app-icon.icns"
+source_folder="rpi-imager"
+
+# Parse command-line arguments
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        -n|--name) name="$2"; shift ;;
+        -c|--color) color="$2"; shift ;;
+        --logo) logo="$2"; shift ;;
+        --app-icon) app_icon="$2"; shift ;;
+        --logo-stacked) logo_stacked="$2"; shift ;;
+        --app-icon-ico) app_icon_ico="$2"; shift ;;
+        --app-icon-icns) app_icon_icns="$2"; shift ;;
+        --source) source_folder="$2"; shift ;;
+        --help) usage ;;
+        *) echo "Unknown parameter passed: $1"; exit 1 ;;
+    esac
+    shift
+done
+
+# Perform text replacement in main.qml with custom name
+sed -i "s/Raspberry Pi/$name/g" "$source_folder/src/main.qml"
+
+# Perform color replacement
+sed -i "s/#cd2355/$color/g" "$source_folder/src/main.qml"
+
+# Perform logo replacement
+cp "$logo" "$source_folder/src/icons/logo_sxs_imager.png"
+
+# Perform stacked logo replacement
+cp "$logo_stacked" "$source_folder/src/icons/logo_stacked_imager.png"
+
+# Perform app icon replacement
+cp "$app_icon" "$source_folder/src/icons/rpi-imager.png"
+
+# Perform app icon .ico replacement
+cp "$app_icon_ico" "$source_folder/src/icons/rpi-imager.ico"
+
+# Perform app icon .icns replacement
+cp "$app_icon_icns" "$source_folder/src/icons/rpi-imager.icns"
+
+echo "Modifications applied successfully."
