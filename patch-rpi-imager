@@ -19,11 +19,11 @@ usage() {
 # Default values
 name="Custom"
 color="#000"
-logo="logo.png"
-app_icon="app-icon.png"
-logo_stacked="logo-stacked_imager.png"
-app_icon_ico="app-icon.ico"
-app_icon_icns="app-icon.icns"
+logo="../logo.png"
+app_icon="../app-icon.png"
+logo_stacked="../logo-stacked_imager.png"
+app_icon_ico="../app-icon.ico"
+app_icon_icns="../app-icon.icns"
 source_folder="rpi-imager"
 
 # Parse command-line arguments

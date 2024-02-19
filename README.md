@@ -31,7 +31,7 @@ git clone https://github.com/raspberrypi/rpi-imager.git
 2. Run this script to apply patch, for example
 
 ```bash
-./patch-rpi-imager --name="Apple Pie" --color="#ff0000" --logo="logo.png" --source="~/Downloads/rpi-imager"
+./patch-rpi-imager --name "Apple Pie" --color "#ff0000" --logo "logo.png" --source "~/Downloads/rpi-imager"
 
 3. Build rpi-imager:
 

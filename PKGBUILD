@@ -11,7 +11,7 @@ depends=('glibc' 'curl' 'hicolor-icon-theme' 'libarchive' 'openssl' 'qt5-base' '
 makedepends=('git' 'cmake' 'qt5-tools')
 optdepends=('dosfstools: SD card bootloader support')
 provides=("rpi-imager=$pkgver")
-#conflicts=('rpi-imager')
+conflicts=('rpi-imager')
 source=("git+https://github.com/raspberrypi/rpi-imager.git")
 sha256sums=('SKIP')
 
@@ -27,7 +27,7 @@ pkgver() {
 
 build() {
   echo "Applying customization patch ..."
-  ./patch-rpi-imager --name="Radxa" --color="#7dc02e" --repo="https://rock5-images-repo.github.io/index.json"
+  ../patch-rpi-imager --name "Radxa" --color "#7dc02e" --repo "https://rock5-images-repo.github.io/index.json"
   cd "rpi-imager"
 
   cmake \
