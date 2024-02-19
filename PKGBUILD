@@ -7,7 +7,7 @@ pkgdesc="Raspberry Pi imaging utility"
 arch=('any')
 url="https://github.com/raspberrypi/rpi-imager"
 license=('Apache')
-depends=('glibc' 'curl' 'hicolor-icon-theme' 'libarchive' 'openssl' 'qt5-base' 'qt5-declarative' 'qt5-quickcontrols2' 'qt5-svg' 'zlib')
+depends=('glibc' 'curl' 'hicolor-icon-theme' 'libarchive' 'openssl' 'qt5-base' 'qt5-declarative' 'qt5-quickcontrols2' 'qt5-svg' 'qt5-imageformats' 'zlib')
 makedepends=('git' 'cmake' 'qt5-tools')
 optdepends=('dosfstools: SD card bootloader support')
 provides=("rpi-imager=$pkgver")
